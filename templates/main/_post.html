@@ -1,0 +1,21 @@
+{% load static %}
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-1 col-md-1 col-lg-1 mt-4">
+            <a href="/index" class="btn btn-block btn-primary d-flex justify-content-center" role="button">全部</a>                       
+            <a href="/index" class="btn btn-block btn-primary d-flex justify-content-center" role="button">討論區</a>
+            <a href="/chat" class="btn btn-block btn-primary d-flex justify-content-center" role="button">隨機聊天</a>
+        </div>
+        <div class="col-sm-7 col-md-7 col-lg-7 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title"> {{ post.title }} </h2>
+                    <small class="card-subtitle"> {{ post.pub_date }} </small>
+                    <pre class="card-text mt-2"><h6> {{ post.body }} </h6><pre>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 mt-4">
+        </div>
+    </div>
+</div>

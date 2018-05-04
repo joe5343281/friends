@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-1 col-md-1 col-lg-1 mt-4">
+            <a href="{% url 'home' %}" class="btn btn-block btn-primary d-flex justify-content-center" role="button">全部</a>                       
+            <a href="{% url 'home' %}" class="btn btn-block btn-primary d-flex justify-content-center" role="button">討論區</a>
+            <a href="/chat" class="btn btn-block btn-primary d-flex justify-content-center" role="button">隨機聊天</a>
+        </div>
+        <div class="col-sm-7 col-md-7 col-lg-7 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="nav mb-2">
+                        <a class="nav-link active text-dark" href="#!">全部</a>
+                        <a class="nav-link active text-dark" href="#!">熱門文章</a>
+                        <a class="nav-link active text-dark" href="#!">最新文章</a>
+                    </div>
+                    <div class="list-group">
+                        {% for post in posts%}
+                        <a class="list-group-item flex-column align-items-start text-dark" href='/post/{{post.slug}}'>
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1">{{post.title}}</h4>
+                                <small>? days ago</small>
+                            </div>
+                            <p class="mb-1">{{post.body}}</p>
+                            <small>{{post.pub_date}}</small>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 mt-4">
+        </div>
+    </div>
+</div>

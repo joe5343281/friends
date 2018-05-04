@@ -1,0 +1,12 @@
+p {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+h6 {
+    word-wrap:break-word;
+    word-break: break-all;
+    white-space:pre-wrap;
+}
+

@@ -1,0 +1,29 @@
+{% load static %}
+<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
+    <div class="col-sm-1 col-md-1 col-lg-1 offset-1">
+        <a class="navbar-brand" href="{% url 'home' %}">
+			<img src="{% static 'images/icon.png' %}" class="img-fluid d-inline-block" alt="friends">      
+		</a>
+    </div>
+    <div class="col-sm-5 col-md-5 col-lg-5">
+        <div class="input-group">
+            <input type="text" class="form-control form-control-sm" placeholder="尋找文章" aria-label="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-sm btn-primary" type="button">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4 d-flex justify-content-end">
+        <div class="btn-group btn-group" role="group" aria-label="Button group with nested dropdown">           
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'home' %}" class="btn btn-primary" role="button">{{request.user.username}}</a>
+            <a href="{% url 'logout' %}" class="btn btn-primary" role="button">登出</a>    
+        {% else %}
+            <a href="{% url 'signup' %}" class="btn btn-primary" role="button">註冊</a>
+            <a href="{% url 'login' %}" class="btn btn-primary" role="button">登入</a>
+        {% endif %}
+        </div>
+    </div>
+</nav>
