@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['damp-taiga-23913.herokuapp.com']
 
 # Application definition
 
@@ -179,3 +179,7 @@ MESSAGE_TYPES_LIST = [
 ]
 
 django_heroku.settings(locals())
+import dj_database_url
+
+DATABASES['default'] = dj_database_url.config()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
