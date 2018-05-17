@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['friendiskind.com', 'damp-taiga-23913.herokuapp.com']
+ALLOWED_HOSTS = ['damp-taiga-23913.herokuapp.com']
 
 # Application definition
 
@@ -188,3 +188,5 @@ DATABASES['default'].update(db_from_env)
 DATABASES['default']['CONN_MAX_AGE'] = 500
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+LOGIN_REDIRECT_URL = "/"
