@@ -140,7 +140,8 @@ CHANNEL_LAYERS = {
         # This example app uses the Redis channel layer implementation channels_redis
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [(os.environ.get("REDIS_URL"), 'redis://localhost:6379')],
+            "hosts": [(os.environ.get("REDIS_URL"))], 
+                #'redis://localhost:6379')],
         "symmetric_encryption_keys": [SECRET_KEY],
         },
     },
