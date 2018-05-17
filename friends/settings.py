@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,11 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open(BASE_DIR + '/friends/secret_key.txt') as f:
-    SECRET_KEY = f.read().strip()
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'friends.urls'
@@ -129,12 +130,7 @@ STATICFILE_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# LOGIN_REDIRECT_URL
-LOGIN_REDIRECT_URL = "/index"
-
 ##### Channels-specific settings
-
-redis_host = os.environ.get('REDIS_HOST', 'localhost')
 
 # Channel layer definitions
 # http://channels.readthedocs.io/en/latest/topics/channel_layers.html
@@ -143,7 +139,8 @@ CHANNEL_LAYERS = {
         # This example app uses the Redis channel layer implementation channels_redis
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [(redis_host, 6379)],
+            "hosts": [(os.environ.get("REDIS_URL"), 'redis://localhost:6379')],
+        "symmetric_encryption_keys": [SECRET_KEY],
         },
     },
 }
@@ -180,3 +177,5 @@ MESSAGE_TYPES_LIST = [
     MSG_TYPE_ENTER,
     MSG_TYPE_LEAVE,
 ]
+
+django_heroku.settings(locals())
