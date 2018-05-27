@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    {% include "header.html" %}
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% endblock %}
+
+{% block navbar %}
+    {% include "navbar.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="mt-4 d-flex justify-content-center">
+            <form action="", method="post">
+            {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <input type="submit"/ value="儲存文章">
+            </form>
+        </div>
+    </div>
+{% endblock %}

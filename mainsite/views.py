@@ -4,10 +4,10 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import login
 
-from posts.views import show_posts_link
+from posts.views import show_posts_url
 
 def home(request):
-	posts = show_posts_link()
+	posts = show_posts_url()
 	return render_to_response("index.html", locals())
 
 def signup(request):

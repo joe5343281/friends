@@ -2,7 +2,7 @@
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
     <div class="col-sm-1 col-md-1 col-lg-1 offset-1">
         <a class="navbar-brand" href="{% url 'home' %}">
-			<img src="{% static 'images/icon.png' %}" class="img-fluid d-inline-block" alt="friends">      
+			<img src="{% static 'images/icon.png' %}" class="img-fluid d-inline-block h-100 w-100" alt="friends">
 		</a>
     </div>
     <div class="col-sm-5 col-md-5 col-lg-5">
@@ -18,11 +18,20 @@
     <div class="col-sm-4 col-md-4 col-lg-4 d-flex justify-content-end">
         <div class="btn-group btn-group" role="group" aria-label="Button group with nested dropdown">           
         {% if request.user.is_authenticated %}
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    文章
+                </button>
+                <div class="dropdown-menu">
+                    <a href="{% url 'editor' %}" class="dropdown-item" role="button">新增文章</a>
+                    <a href="{% url 'myPosts' %}" class="dropdown-item" role="button">我的文章</a>
+                </div>
+            </div>
             <a href="{% url 'home' %}" class="btn btn-primary" role="button">{{request.user.username}}</a>
-            <a href="{% url 'logout' %}" class="btn btn-primary" role="button">登出</a>    
+            <a href="{% url 'logout' %}?next={{ request.get_full_path|urlencode }}" class="btn btn-primary" role="button">登出</a>    
         {% else %}
-            <a href="{% url 'signup' %}" class="btn btn-primary" role="button">註冊</a>
-            <a href="{% url 'login' %}" class="btn btn-primary" role="button">登入</a>
+            <a href="{% url 'signup' %}?next={{ request.get_full_path|urlencode }}" class="btn btn-primary" role="button">註冊</a>
+            <a href="{% url 'login' %}?next={{ request.get_full_path|urlencode }}" class="btn btn-primary" role="button">登入</a>
         {% endif %}
         </div>
     </div>

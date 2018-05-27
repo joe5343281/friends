@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'posts',
     'chat',
     'channels',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILE_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+CKEDITOR_UPLOAD_PATH = "imgs"
 
 ##### Channels-specific settings
 

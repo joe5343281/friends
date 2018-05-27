@@ -18,12 +18,17 @@ from django.urls import path, include
 
 from mainsite.views import home
 from chat.views import chat
-from posts.views import show_post
+from posts.views import show_post, editor, modifyPost, deletePost, myPosts
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', view=home, name='home'),
     path('accounts/', include('mainsite.urls')),
-    path('post/<int:slug>/', view=show_post),
-    path('chat/', view=chat)
+    path('post/<str:slug>/', view=show_post),
+    path('chat/', view=chat, name='chat'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('editor/', view=editor, name='editor'),
+    path('editor/<str:slug>/', view=modifyPost),
+    path('delete/<str:slug>/', view=deletePost),
+    path('myposts/', view=myPosts, name='myPosts')
 ]

@@ -1,7 +1,9 @@
 <html lang="zh-hant">
     <head>
         <title>friends</title>
-        {% include "header.html" %}
+        {% block head %}
+            {% include "header.html" %}
+        {% endblock %}
     </head>
     <body>
         {% block navbar %} {% endblock %}
